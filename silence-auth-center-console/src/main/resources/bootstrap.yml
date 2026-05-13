@@ -17,10 +17,3 @@ spring:
 platform:
   system:
     identifier: GC
-
-silence:
-  auth:
-    center:
-      security:
-        api:
-          white-list: /api/v1/configItems/**,/api/v1/configItemReleaseHistories/release,/api/v1/client/**,/api/v1/cyberarkInfos/pwd/getPassword

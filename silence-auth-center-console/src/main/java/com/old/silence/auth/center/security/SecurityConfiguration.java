@@ -56,6 +56,10 @@ public class SecurityConfiguration {
                         .requestMatchers("/api/v1/auth/logout").permitAll()
                         .requestMatchers("/api/v1/captcha/image").permitAll()
                         .requestMatchers("/api/v1/health").permitAll()
+                        .requestMatchers("//api/v1/configItems/**").permitAll()
+                        .requestMatchers("/api/v1/configItemReleaseHistories/release").permitAll()
+                        .requestMatchers("/api/v1/client/**").permitAll()
+                        .requestMatchers("/api/v1/cyberarkInfos/pwd/getPassword").permitAll()
                         .requestMatchers("/error").permitAll()
                         // 所有其他请求需要认证
                         .anyRequest().authenticated()

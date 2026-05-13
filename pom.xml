@@ -27,6 +27,5 @@
         <module>silence-auth-center-client</module>
         <module>silence-auth-center-domain-enums</module>
         <module>silence-auth-center-console</module>
-        <module>silence-config-center</module>
     </modules>
 </project>
