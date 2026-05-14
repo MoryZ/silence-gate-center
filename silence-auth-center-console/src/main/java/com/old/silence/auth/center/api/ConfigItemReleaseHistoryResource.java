@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.old.silence.core.util.CollectionUtils;
 import com.old.silence.data.commons.converter.QueryWrapperConverter;
 import com.old.silence.auth.center.api.assembler.ConfigItemReleaseHistoryMapper;
 import com.old.silence.auth.center.domain.model.ConfigItemReleaseHistory;
@@ -16,6 +17,7 @@ import com.old.silence.auth.center.dto.ConfigItemReleaseHistoryCommand;
 import com.old.silence.auth.center.dto.ConfigItemReleaseHistoryQuery;
 
 import java.math.BigInteger;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -51,5 +53,11 @@ public class ConfigItemReleaseHistoryResource {
     public void release(@RequestBody ConfigItemReleaseHistoryCommand configItemReleaseHistoryCommand) {
         var configItemReleaseHistory = configItemReleaseHistoryMapper.convert(configItemReleaseHistoryCommand);
         configItemReleaseHistoryRepository.release(configItemReleaseHistory);
+    }
+
+    @PutMapping("/configItemReleaseHistories/bulkRelease")
+    public void bulkRelease(@RequestBody List<ConfigItemReleaseHistoryCommand> configItemReleaseHistoryCommands) {
+        var configItemReleaseHistories = CollectionUtils.transformToList(configItemReleaseHistoryCommands, configItemReleaseHistoryMapper::convert);
+        configItemReleaseHistoryRepository.bulkRelease(configItemReleaseHistories);
     }
 }

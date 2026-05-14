@@ -14,6 +14,7 @@ import com.old.silence.auth.center.infrastructure.persistence.dao.ConfigItemDao;
 import com.old.silence.auth.center.infrastructure.persistence.dao.ConfigItemReleaseHistoryDao;
 
 import java.math.BigInteger;
+import java.util.List;
 
 /**
  * @author moryzang
@@ -61,6 +62,12 @@ public class ConfigItemReleaseHistoryMyBatisRepository implements ConfigItemRele
 
         configItemDao.updateNamespaceStatusById(NameSpaceStatus.PUBLISHED, configItemReleaseHistory.getConfigItemId());
     }
+
+    @Override
+    public void bulkRelease(List<ConfigItemReleaseHistory> configItemReleaseHistories) {
+        configItemReleaseHistories.forEach(this::release);
+    }
+
     @Override
     public ConfigItemReleaseHistory findById(BigInteger id) {
         return configItemReleaseHistoryDao.selectById(id);

@@ -2,7 +2,6 @@ package com.old.silence.auth.center.domain.service;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.Stack;
@@ -10,8 +9,6 @@ import java.util.stream.Collectors;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import com.old.silence.auth.center.domain.model.Role;
-import com.old.silence.auth.center.domain.model.UserRole;
 import com.old.silence.auth.center.domain.repository.RoleRepository;
 import com.old.silence.auth.center.domain.repository.UserRepository;
 import com.old.silence.auth.center.dto.LoginCommand;
@@ -56,7 +53,7 @@ public class AuthService {
             throw AuthCenterMessages.PASSWORD_NOT_CORRECT.createException();
         }
 
-        Set<SilenceAuthCenterRole> silenceAuthCenterRoles = new HashSet<>();
+        Set<SilenceAuthCenterRole> silenceAuthCenterRoles;
         if (CollectionUtils.isEmpty(user.getUserRoles()) && BigInteger.ONE.equals(user.getId())) {
             var allValidRoles = roleRepository.findByStatus(true, RoleView.class);
             silenceAuthCenterRoles = CollectionUtils.transformToSet(allValidRoles, role -> new SilenceAuthCenterRole(role.getCode(),

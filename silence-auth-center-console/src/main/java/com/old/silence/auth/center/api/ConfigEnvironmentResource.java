@@ -31,7 +31,7 @@ public class ConfigEnvironmentResource {
         this.configEnvironmentMapper = configEnvironmentMapper;
     }
 
-    @GetMapping(value = "/configEnvironments", params = {"configComponentId", "envType" })
+    @GetMapping(value = "/configEnvironments")
     public List<ConfigEnvironment> query(ConfigEnvironmentQuery query) {
         var queryWrapper = QueryWrapperConverter.convert(query, ConfigEnvironment.class);
         return configEnvironmentRepository.query(queryWrapper);

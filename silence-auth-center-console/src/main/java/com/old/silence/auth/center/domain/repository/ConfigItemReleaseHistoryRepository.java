@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.old.silence.auth.center.domain.model.ConfigItemReleaseHistory;
 
 import java.math.BigInteger;
+import java.util.List;
 
 public interface ConfigItemReleaseHistoryRepository {
 
@@ -40,6 +41,8 @@ public interface ConfigItemReleaseHistoryRepository {
      * @param configItemReleaseHistory 配置发布项信息
      */
     void update(ConfigItemReleaseHistory configItemReleaseHistory);
-    
 
-} 
+
+    void bulkRelease(List<ConfigItemReleaseHistory> configItemReleaseHistories);
+
+}

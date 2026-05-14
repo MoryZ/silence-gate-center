@@ -47,7 +47,7 @@ public class SecurityConfiguration {
                 }))
                 .sessionManagement(sessionManagementConfigurer -> sessionManagementConfigurer.sessionCreationPolicy(
                         SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(authz -> authz
+                .authorizeHttpRequests(auths -> auths
                         // 公开接口
                     .requestMatchers("/api/v1/users/modifyPassword").permitAll()
                         .requestMatchers("/api/v1/users/{id}/resetPassword").permitAll()
