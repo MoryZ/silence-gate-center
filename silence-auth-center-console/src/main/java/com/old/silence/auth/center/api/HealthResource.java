@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1")
 public class HealthResource {
 
-
-
     @GetMapping("/health")
     public String health() {
         return "health";
